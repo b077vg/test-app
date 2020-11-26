@@ -1,6 +1,12 @@
 var el_hitarea = document.getElementById('hitarea');
 let canvas;
+let scrx,scry;
+
 canvas = document.getElementById('sample');
+getScreenSize();
+canvas.width = scrx-20;
+canvas.hright = scry-20;
+
 var ctx = canvas.getContext('2d');
 let x = canvas.width/2;
 let y = canvas.height/2;
@@ -76,17 +82,26 @@ function MouseMoveFunc(e){
     x = e.clientX - canvas.getBoundingClientRect().left;
     y = e.clientY - canvas.getBoundingClientRect().top;
 	x　=　Math.round(x);
-	console.log("x:" + x);
-	console.log("y:" + y);
+	//console.log("x:" + x);
+	//console.log("y:" + y);
 }
 function TouchEventFunc(e){
     x = e.clientX - canvas.getBoundingClientRect().left;
     y = e.clientY - canvas.getBoundingClientRect().top;
 	x　=　Math.round(x);
-	console.log("x:" + x);
-	console.log("y:" + y);	
+	//console.log("x:" + x);
+	//console.log("y:" + y);	
 }	
+function getScreenSize() {
 
+  console.log(" 画面サイズの横幅 ");
+  scrx = window.parent.screen.width;
+  //console.log(scrx);
+
+  console.log(" 画面サイズの高さ ");
+  scry = window.parent.screen.height;
+  //console.log(scry);
+}
 if(canvas.addEventListener){
 	canvas.addEventListener("mousemove" , MouseMoveFunc, false);
 	canvas.addEventListener("touchmove", TouchEventFunc, false);
